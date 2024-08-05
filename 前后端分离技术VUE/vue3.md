@@ -1,10 +1,8 @@
 # vue3
 
-> [!NOTE]
->
 > 【尚硅谷Vue3入门到实战，最新版vue3+TypeScript前端开发教程】
 >
-> https://www.bilibili.com/video/BV1Za4y1r7KE?p=15&vd_source=0dca1cfb04ee971df44055dcc2b06e83
+> https://www.bilibili.com/video/BV1Za4y1r7KE?p=1&vd_source=0dca1cfb04ee971df44055dcc2b06e83
 
 ## 1. 创建vue3工程
 
@@ -18,7 +16,7 @@ Vue3 推荐使用基于 vite 创建，vite是一个前端的构建工具，能�
 
 ​	真正的按需编译，不在等待整个应用编译完成
 
-```shell
+```bash
 ## 创建命令
 npm create vue@latest
 
@@ -42,6 +40,7 @@ npm run dev
 
 ### 1.2 工程结构介绍
 
+```text
 edv.d.ts 用于给文件声明 例如txt文件
 
 index.html 项目入口文件
@@ -51,14 +50,13 @@ package 包的管理文件
 tsconfig ts配置的相关文件
 
 vite.config.ts 插件配置文件
+```
 
-<img src="./images/image-20240712213004225.png" alt="image-20240712213004225" style="zoom:50%;" />
+<img src="_images/image-20240712213004225.png" alt="image-20240712213004225" style="zoom:50%;" />
 
 > [!WARNING]
 >
 > 终端输入命令  `npm i` 安装node_modules包
-
-
 
 src->assets 资源文件夹
 
@@ -68,7 +66,7 @@ src->assets 资源文件夹
 
 ​	components 组件文件夹
 
-<img src="./images/Snipaste_2024-07-12_21-41-55.png" alt="Snipaste_2024-07-12_21-41-55" style="zoom:50%;" />
+<img src="./_images/Snipaste_2024-07-12_21-41-55.png" alt="Snipaste_2024-07-12_21-41-55" style="zoom:50%;" />
 
 
 
