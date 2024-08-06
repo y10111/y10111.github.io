@@ -27,7 +27,27 @@
       search: 'auto',
       // 配置仓库地址
       repo: 'https://github.com/y10111/y10111.github.io.git',
-      
+
+      plugins: [
+        function (hook, vm) {
+          // load livere
+          hook.beforeEach(function(content) {
+              var comment = "<div id='lv-container' data-id='city' data-uid='MTAyMC82MDAzNS8zNjQ5OA=='></div>\n\n----\n"
+              return content + comment;
+          });
+
+          hook.doneEach(function() {
+             (function(d, s) {
+                 var j, e = d.getElementsByTagName(s)[0];
+                 if (typeof LivereTower === 'function') { return; }
+                 j = d.createElement(s);
+                 j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                 j.async = true;
+                 e.parentNode.insertBefore(j, e);
+             })(document, 'script');
+          });
+        },
+      ]
 
     }
   </script>
@@ -41,20 +61,7 @@
   <script src="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js" type="text/javascript">
   </script>
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
 
-<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
-<script>
-  const gitalk = new Gitalk({
-    clientID: 'Ov23liIenl0qRX8GDxvW',
-    clientSecret: '5929b557697ab2b998b40d38a177e90411d2a36a',
-    repo: 'y10111/y10111.github.io',
-    owner: 'y10111',
-    admin: ['y10111'],
-    distractionFreeMode: false
-  })
-</script>
 </body>
 
 </html>
