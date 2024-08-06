@@ -29,26 +29,33 @@
       // 配置仓库地址
       repo: 'https://github.com/y10111/y10111.github.io.git',
 
-      plugins: [
-        function (hook, vm) {
-          // load livere
-          hook.beforeEach(function(content) {
-              var comment = "<div id='lv-container' data-id='city' data-uid='MTAyMC82MDAzNS8zNjQ5OA=='></div>\n\n----\n"
-              return content + comment;
-          });
+      // docsify-valine (defaults)
+          Valine: {
+              appId: 'EKXsgGgR7VBoroDQRnKXx8H7-MdYXbMMI',
+              appKey: 'DhIdtHipyfANlzfP9LxokgzL',
+              // docPath: 'hash', //default to `hash` ,or you can choose `full`
+          }，
+      
+      // plugins: [
+      //   function (hook, vm) {
+      //     // load livere
+      //     hook.beforeEach(function(content) {
+      //         var comment = "<div id='lv-container' data-id='city' data-uid='MTAyMC82MDAzNS8zNjQ5OA=='></div>\n\n----\n"
+      //         return content + comment;
+      //     });
 
-          hook.doneEach(function() {
-             (function(d, s) {
-                 var j, e = d.getElementsByTagName(s)[0];
-                 if (typeof LivereTower === 'function') { return; }
-                 j = d.createElement(s);
-                 j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                 j.async = true;
-                 e.parentNode.insertBefore(j, e);
-             })(document, 'script');
-          });
-        },
-      ]
+      //     hook.doneEach(function() {
+      //        (function(d, s) {
+      //            var j, e = d.getElementsByTagName(s)[0];
+      //            if (typeof LivereTower === 'function') { return; }
+      //            j = d.createElement(s);
+      //            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      //            j.async = true;
+      //            e.parentNode.insertBefore(j, e);
+      //        })(document, 'script');
+      //     });
+      //   },
+      // ]
 
     }
   </script>
@@ -62,7 +69,9 @@
   </script>
 
   <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
-
+   
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <script src="//unpkg.com/docsify-valine/dist/docsify-valine.min.js"></script>
 </body>
 
 </html>
