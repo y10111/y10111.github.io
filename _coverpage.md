@@ -6,5 +6,5 @@
 
 - Started on 2024/08/04
 
-[GitHub](https://github.com/docsifyjs/docsify/)
+[GitHub](https://github.com/y10111/y10111.github.io.git)
 [Get Started](#study-notes)
