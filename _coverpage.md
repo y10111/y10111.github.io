@@ -1,4 +1,4 @@
-![logo](_media/icon.svg)
+<img src="_media/icon.svg" alt="logo" style="border: none; box-shadow: none; width: auto; height: auto;">
 
 # Study Notes<small>1.0.0</small>
 

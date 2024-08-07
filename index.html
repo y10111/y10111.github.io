@@ -6,21 +6,19 @@
   <meta charset="UTF-8">
   <title>note</title>
   <link rel="icon" href="_media/favicon.ico" />
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css" />
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/vue.css" />
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css"
     title="docsify-darklight-theme" type="text/css" />
-  
 </head>
 
 <body>
   <div id="app">请稍等，玩命加载中...</div>
-  <!-- <div id="comments"></div> -->
   <script>
     window.$docsify = {
       name: '📝 Study Notes',
       // 加载自定义侧边栏
       loadSidebar: true,
-      subMaxLevel: 2,
+      subMaxLevel: 3,
       // 启用封面页
       coverpage: true,
       // 小屏设备下合并导航栏到侧边栏
@@ -30,32 +28,11 @@
       repo: 'https://github.com/y10111/y10111.github.io.git',
 
       // docsify-valine (defaults)
-          Valine: {
-              appId: 'zF6kEclzaf2oNRNbTMfO4FZq-gzGzoHsz',
-              appKey: 'xobFdFlPRagZWIybNpqRkiDB',
-              // docPath: 'hash', //default to `hash` ,or you can choose `full`
-          },
-      
-      // plugins: [
-      //   function (hook, vm) {
-      //     // load livere
-      //     hook.beforeEach(function(content) {
-      //         var comment = "<div id='lv-container' data-id='city' data-uid='MTAyMC82MDAzNS8zNjQ5OA=='></div>\n\n----\n"
-      //         return content + comment;
-      //     });
-
-      //     hook.doneEach(function() {
-      //        (function(d, s) {
-      //            var j, e = d.getElementsByTagName(s)[0];
-      //            if (typeof LivereTower === 'function') { return; }
-      //            j = d.createElement(s);
-      //            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-      //            j.async = true;
-      //            e.parentNode.insertBefore(j, e);
-      //        })(document, 'script');
-      //     });
-      //   },
-      // ]
+      Valine: {
+        appId: 'zF6kEclzaf2oNRNbTMfO4FZq-gzGzoHsz',
+        appKey: 'xobFdFlPRagZWIybNpqRkiDB',
+        // docPath: 'hash', //default to `hash` ,or you can choose `full`
+      },
 
     }
   </script>
@@ -69,9 +46,26 @@
   </script>
 
   <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
-   
-    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-    <script src="//unpkg.com/docsify-valine/dist/docsify-valine.min.js"></script>
+
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script src="//unpkg.com/docsify-valine/dist/docsify-valine.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/tunguskha/Image-shadow@latest/assets/js/image-shadow.min.js"></script>
+
 </body>
 
 </html>
+
+<style>
+  img {
+    border-radius: 2.5%;
+    box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.3), -5px 5px 5px rgba(128, 128, 128, 0.3);
+    width: 38%;
+  }
+
+  .vemoji,
+  .vimg {
+    /* border-radius: none; */
+    box-shadow: none;
+    /* width: none; */
+  }
+</style>
