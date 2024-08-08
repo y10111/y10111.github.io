@@ -56,7 +56,7 @@
   </body>
   ```
 
-  ![meter1](_images/meter1.jpg ':size=50%')
+  ![meter1](_images/meter1.jpg)
 
   
 
@@ -73,7 +73,7 @@
   </body>
   ```
 
-  ![meter1](_images/meter2.jpg ':size=50%')
+  ![meter1](_images/meter2.jpg)
 
   
 
