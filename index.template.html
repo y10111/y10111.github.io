@@ -8,28 +8,29 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <!-- 引入 Docsify 的 Vue 主题样式 -->
+
+  <!-- ========================== 样式表 ========================== -->
+  <!-- Docsify 主主题（Vue 风格） -->
   <link rel="stylesheet" id="theme-style" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-  <!-- 引入 Docsify 侧边栏折叠插件的样式 -->
+  <!-- 侧边栏折叠插件样式 -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css" />
-  <!-- 引入 Docsify 固定导航栏插件的样式 -->
+  <!-- 固定导航栏插件样式 -->
   <link rel="stylesheet" href="//unpkg.com/@docisfy/navbar-fixed">
 </head>
 
 <body>
-  <!-- 导航栏 -->
+
+  <!-- ========================== 导航栏 ========================== -->
   <nav class="app-nav">
-    <!-- 网站 logo 链接 -->
+    <!-- Logo 链接 -->
     <p>
       <a href="/">
         <img src="./_media/icon.svg" alt="Logo">
       </a>
     </p>
-
-    <!-- 网站名称 -->
+    <!-- 站点名称 -->
     <p>@Study Notes</p>
-
-    <!-- 主题切换菜单 -->
+    <!-- 主题切换下拉菜单 -->
     <ul>
       <li class="theme-switch">
         Theme Switch
@@ -40,88 +41,141 @@
         </ul>
       </li>
     </ul>
-
-    <!-- 指向 GitHub 仓库的链接，显示仓库的星标数 -->
+    <!-- GitHub 仓库星标徽章 -->
     <a href="https://github.com/y10111/y10111.github.io.git">
       <img src="https://img.shields.io/github/stars/y10111/y10111.github.io" alt="GitHub Repo stars">
     </a>
   </nav>
 
-  <!-- Docsify 应用的挂载点 -->
+  <!-- ========================== Docsify 挂载点 ========================== -->
   <div id="app">请稍等，玩命加载中...</div>
 
-  <!-- Docsify 配置 -->
+  <!-- ========================== Docsify 全局配置 ========================== -->
   <script>
     window.$docsify = {
-      // 网站名称
-      name: 'Study Notes',
-      // 启用封面页
-      coverpage: true,
-      // 加载侧边栏
-      loadSidebar: true,
-      // 子标题的最大层级
-      subMaxLevel: 3,
-      // 设置页面内容距离顶部边距
-      topMargin: 90,
-      // 滚动到顶部
-      auto2top: true,
-      // 侧边栏显示的层级
-      sidebarDisplayLevel: 0,
-      // 搜索插件配置
-      search: {
+      name: 'Study Notes',              // 站点名称
+      coverpage: true,                  // 启用封面页
+      loadSidebar: true,                // 启用侧边栏
+      alias: {                          // 路径别名（避免子目录侧边栏 404）
+        '/.*/_sidebar.md': '/_sidebar.md'
+      },
+      subMaxLevel: 3,                   // 目录生成的最大标题层级
+      autoHeader: true,                 // 根据侧边栏链接自动添加页面标题
+      sidebarDisplayLevel: 0,           // 侧边栏默认折叠层级（0 表示全部折叠）
+      auto2top: true,                   // 切换页面时滚动到顶部
+      search: {                         // 搜索插件配置
         paths: 'auto',
         placeholder: 'Type to search',
         noData: 'No Results!'
       },
-      // 进度条插件配置
-      progress: {
+      topMargin: 10,                    // 内容页在滚动到指定的锚点时，距离页面顶部有一定空间
+      progress: {                       // 阅读进度条配置
         position: "bottom",
         color: "var(--theme-color,#42b983)",
         height: "3px",
       },
-      // mermaid 图表插件配置
-      mermaidConfig: {
+      mermaidConfig: {                  // Mermaid 图表选择器
         querySelector: ".mermaid"
       },
-      // Valine 评论插件配置
-      Valine: {
+      Valine: {                         // Valine 评论插件配置
         appId: '{{VALINE_APP_ID}}',
         appKey: '{{VALINE_APP_KEY}}'
-      }
+      },
+      // formatUpdated: '{MM}/{DD} {HH}:{mm}', // 文件更新时间格式
     }
   </script>
 
-  <!-- 引入 Docsify 核心库 -->
+  <!-- ========================== 核心库 ========================== -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <!-- 引入侧边栏折叠插件 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
-  <!-- 引入搜索插件 -->
+
+  <!-- ========================== 官方插件 ========================== -->
+  <!-- 全文搜索 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-  <!-- 引入表情符号插件 -->
+  <!-- Emoji 短代码支持 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
-  <!-- 引入分页插件 -->
+
+  <!-- ========================== 社区插件 ========================== -->
+  <!-- 代码块一键复制 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+  <!-- 侧边栏多级折叠 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+  <!-- 阅读进度条 -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/docsify-progress@latest/dist/progress.min.js"></script> -->
+  <!-- 上下页分页导航 -->
   <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
-  <!-- 引入警告引用插件 -->
+  <!-- 灵活警告框（提示、注意事项等） -->
   <script src="https://unpkg.com/docsify-plugin-flexible-alerts"></script>
-  <!-- 引入进度条插件 -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify-progress@latest/dist/progress.min.js"></script>
-  <!-- 引入 mermaid 图表库 -->
+
+  <!-- ========================== Mermaid 图表 ========================== -->
   <script type="module">
     import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
     mermaid.initialize({ startOnLoad: true });
     window.mermaid = mermaid;
   </script>
-  <!-- 引入 mermaid 图表插件 -->
+  <!-- Mermaid 的 Docsify 集成插件 -->
   <script src="//unpkg.com/docsify-mermaid@2.0.1/dist/docsify-mermaid.js"></script>
-  <!-- 引入 Valine 评论库 -->
+
+  <!-- ========================== 评论系统 ========================== -->
+  <!-- Valine 核心库 -->
   <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-  <!-- 引入 Docsify Valine 评论插件 -->
+  <!-- Valine 的 Docsify 集成插件 -->
   <script src="//unpkg.com/docsify-valine/dist/docsify-valine.min.js"></script>
 
-  <!-- 引入主题切换脚本 -->
+  <!-- ========================== 代码高亮（额外语言支持） ========================== -->
+  <!-- Docsify 内置 Prism 核心，此处添加默认不支持的语言组件 -->
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-java.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-typescript.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-sql.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-yaml.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-markdown.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-go.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-rust.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-c.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-cpp.min.js"></script>
+
+  <!-- ========================== 自定义脚本 ========================== -->
+  <!-- 主题切换逻辑 -->
   <script src="./assets/theme-switcher.js"></script>
-  <!-- 引入背景切换脚本 -->
+  <!-- 背景切换逻辑 -->
   <script src="./assets/background-switcher.js"></script>
+  <!-- 进度条 -->
+  <script src="./assets/docsify-bottom-progress.js"></script>
+
+  <!-- ========================== 自定义样式 ========================== -->
+  <style>
+    /* 减小标题上边距，使布局更紧凑
+    .markdown-section h1,
+    .markdown-section h2,
+    .markdown-section h3 {
+      padding: 1.5em 0 0;
+    } */
+
+    /* 代码块添加圆角和阴影 */
+    .markdown-section pre {
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 针对 WebKit 浏览器（Chrome, Edge, Safari） */
+    ::-webkit-scrollbar {
+      width: 0;
+      /* 垂直滚动条宽度为0 */
+      height: 0;
+      /* 水平滚动条高度为0 */
+      background: transparent;
+    }
+
+    /* 针对 Firefox */
+    * {
+      scrollbar-width: none;
+      /* 隐藏滚动条，但保留滚动功能 */
+    }
+  </style>
+
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 # Study Notes
 
-> 记录软件工程的笔记网站，涵盖主流技术与实践总结。
+> 记录软件工程的笔记网站，聚焦 Java 全栈开发与人工智能实践
 
-- 基于Vue与Java的全栈Web开发
-- C++与Qt桌面应用开发
-- MySQL与Oracle数据库技术
+- Java基础 + AI启蒙：语法、集合、多线程、AI入门
+- 后端全栈 + 项目实战：Spring Boot、微服务、MySQL、医疗/听书项目
+- 高级技术 + AI知识库：JVM调优、并发、LangChain、RAG
