@@ -441,13 +441,4 @@ Default encoding for Properties foles：UTF-8
 >
 > 在src目录里面的源文件才能正常编译和运行，反之不能正常编译和运行。
 
-运行源文件后工程根目录下输出out文件夹，此文件夹下保留编译后的.class源文件
-
-
-
-
-
-
-
-
-
+运行源文件后工程根目录下输出out文件夹，此文件夹下保留.java文件编译后的字节码文件.class
