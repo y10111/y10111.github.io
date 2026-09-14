@@ -1,0 +1,135 @@
+课程链接：视频《How to Setup C++ on Linux》（The Cherno C++ 系列 第 4 集）
+
+YouTube 链接：（留空）
+
+## 工具方案：CMake + CodeLite
+
+在 Linux 上搭建 C++ 开发环境的方式非常多，本集采用作者个人喜欢的组合：**CMake + CodeLite**。
+
+用 **CMake** 生成 **CodeLite** 的项目文件。CodeLite 是一个轻量级 IDE——该有的功能基本都有，但不像大型 IDE 那样笨重，可以让你舒服地专注写代码。本集演示环境是 VirtualBox 虚拟机中的 **Linux Mint 18.1**，图形界面使用 KDE（桌面环境）。
+
+> [!NOTE]
+> **为什么 CMake？** CMake 本身不是编译器，而是一个"项目生成器"：你写一份 CMakeLists.txt 描述规则，它就能为不同 IDE/构建系统生成对应的项目文件。好处是一份配置支持多平台，这是大型工程普遍采用的做法。
+
+## 搭建项目目录
+
+本系列沿用统一的目录习惯：新建一个 **Dev** 目录存放所有开发内容，内部每个项目一个文件夹。本次创建 Hello World 项目，并在其中建立 **source** 子目录专门放源代码文件。
+
+```bash
+mkdir -p Dev/HelloWorld/source
+```
+
+## 安装所需软件
+
+打开终端，先更新软件源仓库（需要输入 root 密码），再安装四件套：
+
+```bash
+sudo apt-get update
+sudo apt-get install vim g++ codelite cmake
+```
+
+- **vim**：终端里的文本编辑器（作者偏好，可用任意文本编辑器替代）
+- **g++**：C++ 编译器（gcc 的 C++ 版本）
+- **codelite**：IDE
+- **cmake**：项目生成器
+
+安装包约 198 MB，按 Y 确认后等待完成。
+
+## 编写 CMakeLists.txt：告诉 CMake 如何构建
+
+在项目根目录下创建 `CMakeLists.txt`（注意全名，没有 .txt 也不会是别的扩展名）。CMake 读这个文件来决定如何生成项目。内容分几部分：
+
+**1. 指定最低 CMake 版本**——习惯上写 3.5 即可。
+
+**2. 给项目命名**——本例为 HelloWorld。
+
+**3. 设置编译标志**：沿用 CMake 已有的 CXX 编译标志（CMAKE_CXX_FLAGS），在此基础上**追加"显示所有警告"**（-Wall）。关于 C++ 标准版本，用 C++11 还是 C++14 对本项目没有影响（只是打印 Hello World），选择 **14** 以适度面向未来。
+
+**4. 指定源代码目录**：定义一个变量，指向工程源码目录——即"当前所在目录"（PROJECT_SOURCE_DIR）+ 其下的 source 文件夹。
+
+**5. 用通配收集源文件**：用 GLOB 让 CMake 自动收集 source 目录下后缀为 `.cpp` 或 `.CPP` 的文件参与编译。若有单独的头文件目录，还需额外配置，本集不做。
+
+**6. 声明可执行文件**：add_executable 声明要生成的可执行目标，名称用项目名，源文件传入上面收集好的列表。
+
+```cmake
+cmake_minimum_required(VERSION 3.5)
+
+project(HelloWorld)
+
+# 沿用已有编译标志，并追加“显示所有警告”
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+
+# 工程源码目录：当前目录 + source 子目录
+set(SOURCE_DIR "${PROJECT_SOURCE_DIR}/source")
+
+# 收集 source 目录下所有 .cpp / .CPP 文件
+file(GLOB SOURCES "${SOURCE_DIR}/*.cpp" "${SOURCE_DIR}/*.CPP")
+
+add_executable(${PROJECT_NAME} ${SOURCES})
+```
+
+> [!TIP]
+> 现阶段所有源文件直接放进 source 目录即可，GLOB 会自动匹配，无需每次新增文件都改 CMakeLists。
+
+## 编写 build.sh：一键生成项目
+
+再创建一个 `build.sh` 构建脚本。注意：它**并不负责编译代码**，而是调用 CMake 生成 CodeLite 项目文件。脚本只有几行：第一行声明解释器 `#!/bin/sh`；随后执行 cmake，指定生成器为 **"CodeLite - Unix Makefiles"**（如果想用 Ninja 也支持，只是这个最简单），并把构建类型设为 **Debug**——之后调试多，生成调试配置正合适。
+
+```sh
+#!/bin/sh
+cmake -G "CodeLite - Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug ..
+```
+
+> [!WARNING]
+> 认准生成器名称里 CodeLite 的 **L 是大写**，写错会无法识别。在 Linux 上运行脚本前必须先用 `chmod +x build.sh` 给它加上可执行权限，否则报"权限不足"。
+
+## 运行脚本并打开项目
+
+给脚本加执行权限后运行：
+
+```bash
+chmod +x build.sh
+./build.sh
+```
+
+一切正常的话，目录里会出现一批新文件，其中关键的是 **helloWorld.project**（CodeLite 项目文件）和 **helloWorld.workspace**（CodeLite 工作区文件），另外还有 CMake 生成的 Makefile 等。在终端直接打开工作区：
+
+```bash
+codelite helloWorld.workspace &
+```
+
+结尾的 `&` 让 CodeLite 在后台启动，终端还能继续使用。首次打开会弹设置向导，直接跳过即可。
+
+## 编写与编译 Hello World
+
+CodeLite 界面中可以看到项目、目标（Target）、头文件目录（Include Directories）等结构，源文件在 Sources 分组下。双击打开 main.cpp，写入与其他平台视频一致的代码：
+
+```cpp
+#include <iostream>
+
+int main()
+{
+    std::cout << "Hello World!" << std::endl;
+    std::cin.get();
+}
+```
+
+保存后点击 **Build > Build Project** 编译，底部输出 "0 errors, 0 warnings"，干净通过。回到终端 `ls` 能看到生成的 **helloWorld** 文件——它就是编译出的可执行程序，直接运行：
+
+```bash
+./helloWorld
+```
+
+控制台打印 Hello World。如果想在 CodeLite 内直接运行，可在 **Preferences（首选项）** 中把运行终端切换为内置终端模拟器，之后点 **Build > Build & Run** 即可一键编译并执行，输出显示在 CodeLite 内置终端里。
+
+## 本章小结
+
+Linux 集与 Windows、Mac 集的目标一致——把工具链跑通，但在组建方式上体现了 Linux 生态的特点：
+
+**工具组合**：CMake（项目生成器）+ CodeLite（轻量 IDE）+ g++（编译器），通过一条 `apt-get install` 命令完成安装。
+
+**配置方式**：Linux 习惯"手动配置"——写 CMakeLists.txt 声明构建规则（版本、项目名、编译标志 -Wall、源码目录、GLOB 收集源文件、生成可执行目标），再写 build.sh 一键生成 CodeLite 工程。
+
+**关键命令**：`sudo apt-get update` 更新仓库；`chmod +x build.sh` 赋予脚本执行权限；`codelite xxx.workspace &` 后台打开工程；`./helloWorld` 直接运行编译产物。
+
+**验证成果**：一份 10 行左右的 CMakeLists + 3 行构建脚本，顺利产生了 CodeLite 工程、编译出了 Hello World 可执行文件并成功运行——同样的代码、同样的工作流，在三种操作系统上全部就绪。接下来进入 C++ 工作原理的学习。

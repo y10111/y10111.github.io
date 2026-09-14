@@ -2,13 +2,14 @@
 
 ![logo](_media/icon.svg)
 
-# Study Notes<small>Software Engineering</small>
+# Study Notes<small>@y10111</small>
 
-> 记录软件工程的笔记网站，聚焦 Java 全栈开发与人工智能实践
+> 记录学习与备考笔记，聚焦 C++ 开发、桌面应用与软考
 
-- Java基础 + AI启蒙：语法、集合、多线程、AI入门
-- 后端全栈 + 项目实战：Spring Boot、微服务、MySQL、医疗/听书项目
-- 高级技术 + AI知识库：JVM调优、并发、LangChain、RAG
+- 编程语言：C++ 语法、现代 C++ 特性、STL 与内存管理
+- 桌面开发：Qt 框架从入门到桌面应用
+- 数据库：Oracle SQL、C++ 与 Qt 连接及数据处理
+- 软考备考：软件设计师、系统架构师考试核心要点
 
-[GitHub](https://github.com)
+[GitHub](https://github.com/y10111)
 [Get Started](#study-notes)
