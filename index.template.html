@@ -164,6 +164,28 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
+    /* 侧边栏目录超宽时单行省略 */
+    .sidebar-nav li > a,
+    .sidebar-nav li > p {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* 悬浮时显示完整目录名 */
+    .sidebar-nav li > a:hover,
+    .sidebar-nav li > p:hover {
+      overflow: visible;
+      white-space: normal;
+      word-break: break-all;
+      position: relative;
+      z-index: 99;
+      background: rgba(128, 128, 128, 0.18);
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
     /* 针对 WebKit 浏览器（Chrome, Edge, Safari） */
     ::-webkit-scrollbar {
       width: 0;
