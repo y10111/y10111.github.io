@@ -1,0 +1,26 @@
+/* sidebar-title-hover.css
+ * 侧边栏目录名超长省略、鼠标悬浮显示完整名称
+ * 引入方式：在 index.html / index.template.html 中加入
+ *   <link rel="stylesheet" href="./assets/sidebar-title-hover.css"> */
+
+/* 目录条目（章节标题 <p> 与笔记链接 <a>）单行显示，超出宽度以省略号截断 */
+.sidebar-nav li > a,
+.sidebar-nav li > p {
+  display: block;           /* 占满整行，省略号效果需要块级盒子 */
+  white-space: nowrap;      /* 强制单行，禁止自动换行 */
+  overflow: hidden;         /* 隐藏超出宽度的部分 */
+  text-overflow: ellipsis;  /* 被截断的位置显示省略号 */
+}
+
+/* 鼠标悬浮时展开完整名称：恢复换行并浮于其他条目之上 */
+.sidebar-nav li > a:hover,
+.sidebar-nav li > p:hover {
+  overflow: visible;        /* 允许内容溢出自身范围，完整展示 */
+  white-space: normal;      /* 恢复自动换行，超长名称折行显示 */
+  word-break: break-all;    /* 超长单词强制断行，避免横向溢出侧边栏 */
+  position: relative;       /* 开启定位，为 z-index 生效做准备 */
+  z-index: 99;              /* 抬高层级，悬浮内容盖住相邻条目 */
+  background: rgba(128, 128, 128, 0.18); /* 半透明灰底，明暗主题下均可见 */
+  border-radius: 6px;       /* 圆角，贴近气泡观感 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 轻投影，突出悬浮层 */
+}
