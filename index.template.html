@@ -64,7 +64,7 @@
       alias: {                          // 路径别名（避免子目录侧边栏 404）
         '/.*/_sidebar.md': '/_sidebar.md'
       },
-      subMaxLevel: 3,                   // 目录生成的最大标题层级
+      subMaxLevel: 2,                   // 目录生成的最大标题层级
       autoHeader: true,                 // 根据侧边栏链接自动添加页面标题
       sidebarDisplayLevel: 0,           // 侧边栏默认折叠层级（0 表示全部折叠）
       auto2top: true,                   // 切换页面时滚动到顶部
@@ -150,7 +150,7 @@
   <!-- 进度条 -->
   <script src="./assets/docsify-bottom-progress.js"></script>
   <!-- 修复：重复点击侧边栏同一锚点时也会滚动到目标 -->
-  <!-- <script src="./assets/sidebar-scroll-fix.js"></script> -->
+  <script src="./assets/sidebar-scroll-fix.js"></script>
 
   <!-- ========================== 自定义样式（外链） ========================== -->
   <!-- 侧边栏目录超长省略、悬浮显示完整名称 -->
